@@ -10,6 +10,7 @@ contador = 1
 final = 213
 final_data = []
 
+#Create the csv file
 with open('news_correio.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
 
@@ -26,9 +27,11 @@ with open('news_correio.csv', 'w', newline='', encoding='utf-8') as file:
         result_title = re.findall('<h2>.+?</h2>', data_string)
 
         final_data.append([])
-        final_data[i].append(contador)
+        final_data[i].append(i)
         final_data[i].append(result_link)
         final_data[i].append(result_title)
+        i += 1
+
 
         writer.writerow([final_data])
 
@@ -37,4 +40,7 @@ with open('news_correio.csv', 'w', newline='', encoding='utf-8') as file:
 
 print(len(final_data))
 #print(result_title)
+
+
+
 
