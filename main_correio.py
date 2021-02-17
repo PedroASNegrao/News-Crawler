@@ -11,7 +11,7 @@ final = 213
 final_data = []
 
 #Create the csv file
-with open('news_correio.csv', 'w', newline='', encoding='utf-8') as file:
+with open('Data/news_correio.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
 
     for index in range(final):
