@@ -10,7 +10,7 @@ import pandas as pd
 
 i = 0
 
-final = 214
+final = 2
 final_data = []
 
 #Create the csv file
