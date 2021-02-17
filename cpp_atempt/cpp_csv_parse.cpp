@@ -16,14 +16,14 @@ void whriteSection(string section){
 	ofstream initialEdit;
 	int j, k, t, index, increment;
 	string stringAdd = "";
-	string items[11] = {"id", "category", "excerpt", "title", "date", "image", "credit", "url", "category_father", "content", "date_single"};
+	string items[9] = {"id", "category", "excerpt", "title", "date", "credit", "url", "category_father", "\'content"};
 	//string id = "", category = "", excerpt = "", title = "", date = "", image = "", credit = "", url = "", category_father = "", content = "", date_single = "";
 	initialEdit.open("news_metropoles_parsed.txt", fstream::app);
 	
 	/*
 	if (initialEdit.is_open()){
 		//for (j=0; j<11; j++ ){
-		j=2;
+		j=8;
 			//cout << items[j] << endl;
 			size_t found = section.find(items[j]);
 			index = section[found + items[j].size()];
@@ -45,18 +45,20 @@ void whriteSection(string section){
 			
 			cout << stringAdd;
 			
-			//stringAdd += ",";
-			//initialEdit << stringAdd;
+			stringAdd += ",";
+			initialEdit << stringAdd;
 				
 		//}
 	initialEdit << "\n";
 	initialEdit << "teste";
 	initialEdit.close();
 	}
+	
 	*/
 	
+	
 	if (initialEdit.is_open()){
-		for (j=0; j<11; j++ ){
+		for (j=0; j<9; j++ ){
 			//cout << items[j] << endl;
 			size_t found = section.find(items[j]);
 			index = section[found + items[j].size() + 3];
@@ -82,7 +84,7 @@ void whriteSection(string section){
 		}
 	
 	initialEdit << "\n";
-	initialEdit << "teste";
+	//initialEdit << "teste";
 	initialEdit.close();
 	}
 	
@@ -112,11 +114,17 @@ void whriteSection(string section){
 void metropoles_parse(){
 	ifstream inFile;
 	string line, section;
-	int tamanho, i, row;
+	long int tamanho, i, row;
 	bool record;
 	int *v;
 	
+	ofstream initialEdit;
+	int j, k, t, index, increment;
+	string stringAdd = "";
+	string items[9] = {"id", "category", "excerpt", "title", "date", "credit", "url", "category_father", "\'content"};
+	
 	inFile.open("news_metropoles.txt");
+	initialEdit.open("news_metropoles_parsed.txt", fstream::app);
 	
 	if (!inFile) {
         cout << "Unable to open file";
@@ -126,9 +134,11 @@ void metropoles_parse(){
 	//pegar o numero de linhas;
 	//getline(inFile,line);
 	//cout << line[line.size()-1] << endl;
+	row = 0;
+	record = true;
 	
-	for(i=0; i<30; i++){
-		getline(inFile,line);
+	//for(i=0; i<70; i++){
+	while(getline(inFile,line)){
 		
 		if(line[0] == '\"'){
 			//cout << "OK"<< endl;
@@ -140,8 +150,41 @@ void metropoles_parse(){
 		}
 		
 		if(record == false){
-			whriteSection(section);
 			section += line;
+			row++;
+			cout << "Loading: " + row << endl;
+			
+				if (initialEdit.is_open()){
+					for (j=0; j<9; j++ ){
+						//cout << items[j] << endl;
+						size_t found = section.find(items[j]);
+						index = section[found + items[j].size() + 3];
+						k=0;
+						stringAdd = "";
+						while(section[found + items[j].size()+ k] == '\'' || section[found + items[j].size()+k] == ' ' ){
+							k++;
+						}
+						
+						while(section[found + items[j].size() + k] != '\''){
+							if(section[found + items[j].size() + k] != ','){
+								stringAdd += section[found + items[j].size() + k];
+							}
+							else{
+								stringAdd += ' ';
+							}
+							k++;
+						}
+						
+						stringAdd += ",";
+						initialEdit << stringAdd;
+							
+					}
+				
+				initialEdit << "\n";
+				//initialEdit << "teste";
+				
+				}
+			section = "";
 		}
 		else{
 			section += line;
@@ -149,33 +192,14 @@ void metropoles_parse(){
 		}
 	}
 	
-	record = true;
-	row = 0;
-	/*	
-	while(getline(inFile,line)){
-		
-		if(line[0] == "\""){
-			record = true;	
-		}
-		
-		if(line[line.size()-1] == "\""){
-			record = false;
-		}
-		
-		if(record == false){
-			whriteSection();
-			section = "";
-		}
-		else{
-			section += line
-		}
-		
-		
-		row++;
-	} 
-	*/
 	
+	
+	initialEdit.close();
 	inFile.close();
+	
+}
+
+void correio_parse(){
 	
 }
 
@@ -183,12 +207,21 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 	ofstream initialEdit;
+	/*
 	initialEdit.open("news_metropoles_parsed.txt");
 	if (initialEdit.is_open()){
-		initialEdit << "id, category, excerpt, title, date, image, credit, url, category_father, content, date_single \n";
+		initialEdit << "id, category, excerpt, title, date, credit, url, category_father, content \n";
 		initialEdit.close();
 	}
 	metropoles_parse();
+	*/
+	
+	initialEdit.open("news_correios_parsed.txt");
+	if (initialEdit.is_open()){
+		initialEdit << "id, category, excerpt, title, date, credit, url, category_father, content \n";
+		initialEdit.close();
+	}
+	correio_parse();
     //cout << "Hello World" << endl;
 }
 
