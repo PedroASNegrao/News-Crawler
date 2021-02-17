@@ -207,21 +207,15 @@ int main()
 {
 	setlocale(LC_ALL, "Portuguese");
 	ofstream initialEdit;
-	/*
+	
 	initialEdit.open("news_metropoles_parsed.txt");
 	if (initialEdit.is_open()){
 		initialEdit << "id, category, excerpt, title, date, credit, url, category_father, content \n";
 		initialEdit.close();
 	}
 	metropoles_parse();
-	*/
 	
-	initialEdit.open("news_correios_parsed.txt");
-	if (initialEdit.is_open()){
-		initialEdit << "id, category, excerpt, title, date, credit, url, category_father, content \n";
-		initialEdit.close();
-	}
-	correio_parse();
+	
     //cout << "Hello World" << endl;
 }
 
