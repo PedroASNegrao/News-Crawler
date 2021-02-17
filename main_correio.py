@@ -10,7 +10,7 @@ import pandas as pd
 
 i = 0
 
-final = 3
+final = 214
 final_data = []
 
 #Create the csv file
@@ -44,6 +44,8 @@ for index in range(1, final):
         parse_date = date.string
         parse_date = re.sub("postado em ", "", parse_date)
         date_array.append(parse_date)
+    i = i+1
+    print(i)
 
     #print(links_array)
     #print(title_array)
@@ -63,7 +65,9 @@ index_data = [i for i in range(0, len(links_array))]
 aux = np.array([links_array, title_array, date_array])
 
 df = pd.DataFrame({'url': links_array, 'title': title_array, 'date': date_array})
-print(df)
+#print(df)
+
+df.to_csv('Data/news_correio.csv', sep=',', index=False, encoding='utf-8')
 
     #https://www.correiobraziliense.com.br/
 
