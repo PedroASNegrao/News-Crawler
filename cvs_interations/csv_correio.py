@@ -15,7 +15,7 @@ objeto = []
 #print(data_array)
 
 #Palaras para serem pesquisadas:
-words = ["Suspeito", "Suspeita", "Suspeitos", "Polícia", "Policiais", "Policial", "Bandido", "Bandida", "Bandidos", "Criminoso", "Criminosa", " MP ", "Criminosos", "Vítima", "Vítimas", "Crime", "Crimes", " Lei ", "Legislação", "Penal", "Penais", "Contravenção", "Contravenções", "Infrações", "Infração", "Infrator", "Infratora", "Infratores", "Contraventor", "Contraventora", "Contraventores", "Advogado", "Advogada", "Advogados", "Juiz", "Juiza", "Juízo", "Ministério Público", "Delegacia", "Boletim de ocorrência", "Testemunhas", "Testemunha", "Testemunhou", "Tribunal", "Justiça", " DP "]
+words = ["Polícia", "Policiais", "Policial", "Bandido", "Bandida", "Bandidos", "Criminoso", "Criminosa", "Criminosos", "Vítima", "Vítimas", "Crime", "Crimes", "Penal", "Penais", "Contravenção", "Contravenções", "Infrações", "Infração", "Infrator", "Infratora", "Infratores", "Contraventor", "Contraventora", "Contraventores", "Delegacia", "Boletim de ocorrência", "Testemunhas", "Testemunha", "Testemunhou", "Tribunal", "DP", "Preso", "Presa", "Presos", "Assalto", "Assaltante", "Assaltantes", "Ladra", "Ladrão", "Ladrões", "Roubo", "Rouba", "Agressão", "Agressor", "Agressora", "Estupro", "Estuprador", "Estupradora", "Feminicídio", "Feminicida", "Morte", "Morto", "Morre", "Morreu", "Faleceu", "Falece", "Falecimento", "Homicídio", "Homicida", "Assassino", "Assassina", "Assassinos", "Traficante", "Traficantes", "Tráfico", "Drogas", "Droga", "Arma", "Armas", "Incêndio", "Incendiou", "Incendiar", "PCDF", "PMDF"]
 low_case_words = []
 
 for word in words:
