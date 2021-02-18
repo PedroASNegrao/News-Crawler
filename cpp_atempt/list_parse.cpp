@@ -23,11 +23,11 @@ int main()
 	inFile.open("list.txt");
 	newlist.open("newlist.txt");
 	if (inFile.is_open()){
-		newlist << "[";
+		newlist << "[" ;
 		while(getline(inFile,line)){
-			newlist << "\"" + line + "\", ";
+			newlist << "\" " + line + " \", ";
 		}
-		newlist << "]";
+		newlist << " ]";
 	inFile.close();
 	}
 	newlist.close();
