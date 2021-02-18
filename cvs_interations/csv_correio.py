@@ -15,6 +15,7 @@ objeto = []
 #print(data_array)
 
 #Palaras para serem pesquisadas:
+"""
 words = [" Polícia ", " Policiais ", " Policial ", " Bandido ", " Bandida ", " Bandidos ", " Criminoso ", " Criminosa ", " Criminosos ", " Vítima ", " Vítimas ", " Crime ", " Crimes ", " Penal ", " Penais ", " Contravenção ", " Contravenções ", " Infrações ", " Infração ", " Infrator ", " Infratora ", " Infratores ", " Contraventor ", " Contraventora ", " Contraventores ", " Delegacia ", " Boletim de ocorrência ", " Testemunhas ", " Testemunha ", " Testemunhou ", " Tribunal ", " DP ", " Preso ", " Presa ", " Presos ", " Assalto ", " Assaltante ", " Assaltantes ", " Ladra ", " Ladrão ", " Ladrões ", " Roubo ", " Rouba ", " Agressão ", " Agressor ", " Agressora ", " Estupro ", " Estuprador ", " Estupradora ", " Feminicídio ", " Feminicida ", " Morte ", " Morto ", " Morre ", " Morreu ", " Faleceu ", " Falece ", " Falecimento ", " Homicídio ", " Homicida ", " Assassino ", " Assassina ", " Assassinos ", " Traficante ", " Traficantes ", " Tráfico ", " Drogas ", " Droga ", " Arma ", " Armas ", " Incêndio ", " Incendiou ", " Incendiar ", " PCDF ", " PMDF "]
 low_case_words = []
 
@@ -22,6 +23,22 @@ for word in words:
     low_case_words.append(word.lower())
 
 words = words + low_case_words
+"""
+words = []
+lowcase_lista = []
+lista = open("./../Lista/list.txt", "r", encoding='utf-8')
+
+for line in lista:
+    aux = line.replace('\n', '')
+    aux = aux + ' '
+    words.append(aux)
+
+for params in words:
+    low = params.lower()
+    low = ' ' + low + ' '
+    lowcase_lista.append(low)
+
+words = words + lowcase_lista
 
 #----------------
 
@@ -77,7 +94,7 @@ print(words_finded)
 
 df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
 #print(df)
-df.to_excel('./../Excel/news_correio3.xls', index=False, encoding='utf-8')
+df.to_excel('./../Excel/news_correio4.xls', index=False, encoding='utf-8')
 #print(type(soup.p.string))
 #print(soup.p.string)
 #aux = soup.p.string
