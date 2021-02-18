@@ -30,12 +30,12 @@ lista = open("./../Lista/list.txt", "r", encoding='utf-8')
 
 for line in lista:
     aux = line.replace('\n', '')
-    aux = aux + ' '
+    #aux = aux + ' '
     words.append(aux)
 
 for params in words:
     low = params.lower()
-    low = ' ' + low + ' '
+    #low = ' ' + low + ' '
     lowcase_lista.append(low)
 
 words = words + lowcase_lista
@@ -61,6 +61,7 @@ for link in data_array:
     #print(soup)
 
     required = False
+    required2 = False
     cont_paragrafo = 0
 
 
@@ -72,17 +73,35 @@ for link in data_array:
         #
         for parameter in words:
             if text.find(parameter) != -1:
-                #print(text)
-                print("OK")
-                required = True
-                objeto.append(parameter)
+                init = text.find(parameter)
+                end = init + len(parameter)
+                if end < len(text):
+                    if not text[end].isalpha():
+                        required = True
+                    else:
+                        required = False
+                else:
+                    required = True
 
-    if(required == True):
+                if init != 0:
+                    if not text[init - 1].isalpha():
+                        required2 = True
+                    else:
+                        required2 = False
+                else:
+                    required2 = True
+
+                if required and required2:
+                    print("OK")
+                    objeto.append(parameter)
+
+    if objeto:
         words_finded.append(objeto)
         objeto = []
         all_links.append(url)
         all_dates.append(link[2])
         required = False
+        required2 = False
 
 
 
