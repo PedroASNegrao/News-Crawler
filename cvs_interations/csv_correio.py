@@ -15,7 +15,7 @@ objeto = []
 #print(data_array)
 
 #Palaras para serem pesquisadas:
-words = ["Polícia", "Policiais", "Policial", "Bandido", "Bandida", "Bandidos", "Criminoso", "Criminosa", " MP ", "Criminosos", "Vítima", "Vítimas", "Crime", "Crimes", " Lei ", "Legislação", "Penal", "Penais", "Contravenção", "Contravenções", "Infrações", "Infração", "Infrator", "Infratora", "Infratores", "Contraventor", "Contraventora", "Contraventores", "Advogado", "Advogada", "Advogados", "Juiz", "Juiza", "Juízo", "Ministério Público", "Delegacia", "Boletim de ocorrência", "Testemunhas", "Testemunha", "Testemunhou", "Tribunal", "Justiça", " DP "]
+words = ["Suspeito", "Suspeita", "Suspeitos", "Polícia", "Policiais", "Policial", "Bandido", "Bandida", "Bandidos", "Criminoso", "Criminosa", " MP ", "Criminosos", "Vítima", "Vítimas", "Crime", "Crimes", " Lei ", "Legislação", "Penal", "Penais", "Contravenção", "Contravenções", "Infrações", "Infração", "Infrator", "Infratora", "Infratores", "Contraventor", "Contraventora", "Contraventores", "Advogado", "Advogada", "Advogados", "Juiz", "Juiza", "Juízo", "Ministério Público", "Delegacia", "Boletim de ocorrência", "Testemunhas", "Testemunha", "Testemunhou", "Tribunal", "Justiça", " DP "]
 low_case_words = []
 
 for word in words:
@@ -77,7 +77,7 @@ print(words_finded)
 
 df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
 #print(df)
-df.to_excel('./../Excel/news_correio2.xls', index=False, encoding='utf-8')
+df.to_excel('./../Excel/news_correio3.xls', index=False, encoding='utf-8')
 #print(type(soup.p.string))
 #print(soup.p.string)
 #aux = soup.p.string
