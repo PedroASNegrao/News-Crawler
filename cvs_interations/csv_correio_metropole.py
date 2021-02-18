@@ -26,12 +26,12 @@ def main():
     inicio_correio = time.time()
     # excel_correios(words)
     fim_correio = time.time()
-    tempo_correio = (inicio_correio - fim_correio)/60
+    tempo_correio = (fim_correio - inicio_correio)/60
 
     inicio_metropoles = time.time()
     excel_metropoles(words)
     fim_metropoles = time.time()
-    tempo_metropoles = (inicio_metropoles - fim_metropoles)/60
+    tempo_metropoles = (fim_metropoles - inicio_metropoles)/60
 
 
     print("Tempo de execução pro Correio foi: %d" % tempo_correio)
@@ -123,7 +123,7 @@ def excel_metropoles(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_metropoles.xls', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_metropoles2.xls', index=False, encoding='utf-8')
 
 def excel_correios(words):
 
