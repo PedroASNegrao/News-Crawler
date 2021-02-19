@@ -24,7 +24,7 @@ def main():
     words = words + lowcase_lista
 
     inicio_correio = time.time()
-    excel_correios(words)
+    #excel_correios(words)
     fim_correio = time.time()
     tempo_correio = (fim_correio - inicio_correio)/60
 
@@ -66,9 +66,13 @@ def excel_metropoles(words):
         #url = ('https://www.metropoles.com/distrito-federal/pcdf-prende-falso-policial-que-sequestrava-e-extorquia-traficantes')
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-        result = requests.get(url, headers=headers)
+        try:
+            result = requests.get(url, headers=headers, timeout=5)
+        except Timeout:
+            print('The request timed out')
+            continue
         data = result.content
-        data_string = str(data.decode("latin-1"))
+        data_string = str(data.decode("iso8859-1"))
         soup = BeautifulSoup(data_string, "lxml")
 
         #print(soup)
@@ -79,13 +83,15 @@ def excel_metropoles(words):
 
 
         for paragrafs in soup.find_all('p'):
-            text = str(paragrafs.string)
-
+            text = str(paragrafs)
             cont_paragrafo = cont_paragrafo + 1
-            print("Checando paragrafo: %d" % cont_paragrafo)
+            print("Metropoles--Checando paragrafo: %d" % cont_paragrafo)
             #print(text)
             #
+            debug1 = 0
             for parameter in words:
+                print(debug1)
+                debug1 = 1 + debug1
                 if text.find(parameter) != -1:
                     init = text.find(parameter)
                     end = init + len(parameter)
@@ -124,7 +130,7 @@ def excel_metropoles(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_metropoles_excel1.xlsx', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_metropoles_excel1.xlsx', index=False, encoding='iso8859-1')
 
 def excel_correios(words):
 
@@ -141,33 +147,37 @@ def excel_correios(words):
     objeto = []
     #print(data_array)
 
-    url_test = ['https://www.correiobraziliense.com.br/cidades-df/2021/02/4905821-familiares-velam-corpo-de-menina-que-morreu-em-acidente-na-br-070.html','https://www.correiobraziliense.com.br/cidades-df/2021/02/4907163-terceiro-envolvido-na-morte-de-estudante-em-planaltina-se-entrega.html','https://www.correiobraziliense.com.br/cidades-df/2021/02/4907151-gdf-vai-construir-viaduto-para-facilitar-acesso-a-vicente-pires.html', 'https://www.correiobraziliense.com.br/cidades-df/2021/02/4907152-policia-militar-prende-dois-homens-em-flagrante-de-estupro-no-paranoa.html']
+    #url_test = ['https://www.correiobraziliense.com.br/cidades-df/2021/02/4905821-familiares-velam-corpo-de-menina-que-morreu-em-acidente-na-br-070.html','https://www.correiobraziliense.com.br/cidades-df/2021/02/4907163-terceiro-envolvido-na-morte-de-estudante-em-planaltina-se-entrega.html','https://www.correiobraziliense.com.br/cidades-df/2021/02/4907151-gdf-vai-construir-viaduto-para-facilitar-acesso-a-vicente-pires.html', 'https://www.correiobraziliense.com.br/cidades-df/2021/02/4907152-policia-militar-prende-dois-homens-em-flagrante-de-estupro-no-paranoa.html']
 
-    for link in url_test:
-    #for link in data_array:
+    #for link in url_test:
+    for link in data_array:
         i = i + 1
         print("Link: %d" % i)
-        url = link
-        #url = (link[0])
+        #url = link
+        url = (link[0])
         #url = ('https://www.correiobraziliense.com.br/cidades-df/2021/02/4907151-gdf-vai-construir-viaduto-para-facilitar-acesso-a-vicente-pires.html')
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-        result = requests.get(url, headers=headers)
+        try:
+            result = requests.get(url, headers=headers, timeout=5)
+        except Timeout:
+            print('The request timed out')
+            continue
         data = result.content
-        data_string = str(data.decode("latin-1"))
+        data_string = str(data.decode("iso8859-1"))
         soup = BeautifulSoup(data_string, "lxml")
 
         #print(soup)
 
         required = False
         required2 = False
-        cont_paragrafo = 0
+        #cont_paragrafo = 0
 
 
         for paragrafs in soup.find_all(attrs={"class": "texto"}):
-            text = str(paragrafs.string)
-            cont_paragrafo = cont_paragrafo + 1
-            print("Checando paragrafo: %d" % cont_paragrafo)
+            text = str(paragrafs)
+            #cont_paragrafo = cont_paragrafo + 1
+            print("Correio--Checando paragrafo: %d" % cont_paragrafo)
             #print(text)
             #
             for parameter in words:
@@ -208,7 +218,7 @@ def excel_correios(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_correio_excel1.xlsx', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_correio_excel1.xlsx', index=False, encoding='iso8859-1')
     #print(type(soup.p.string))
     #print(soup.p.string)
     #aux = soup.p.string
