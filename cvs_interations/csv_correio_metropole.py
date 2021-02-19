@@ -174,7 +174,7 @@ def excel_correios(words):
         #cont_paragrafo = 0
 
 
-        for paragrafs in soup.find_all(attrs={"class": "texto"}):
+        for paragrafs in soup.find_all('p'):
             text = str(paragrafs)
             #cont_paragrafo = cont_paragrafo + 1
             print("Correio--Checando paragrafo: %d" % cont_paragrafo)
