@@ -124,7 +124,7 @@ def excel_metropoles(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_metropoles_excel1.xls', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_metropoles_excel1.xlsx', index=False, encoding='utf-8')
 
 def excel_correios(words):
 
@@ -208,7 +208,7 @@ def excel_correios(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_correio_excel1.xls', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_correio_excel1.xlsx', index=False, encoding='utf-8')
     #print(type(soup.p.string))
     #print(soup.p.string)
     #aux = soup.p.string
