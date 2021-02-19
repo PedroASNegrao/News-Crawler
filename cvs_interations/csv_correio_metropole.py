@@ -24,7 +24,7 @@ def main():
     words = words + lowcase_lista
 
     inicio_correio = time.time()
-    # excel_correios(words)
+    excel_correios(words)
     fim_correio = time.time()
     tempo_correio = (fim_correio - inicio_correio)/60
 
@@ -80,6 +80,7 @@ def excel_metropoles(words):
 
         for paragrafs in soup.find_all('p'):
             text = str(paragrafs.string)
+
             cont_paragrafo = cont_paragrafo + 1
             print("Checando paragrafo: %d" % cont_paragrafo)
             #print(text)
@@ -123,7 +124,7 @@ def excel_metropoles(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_metropoles2.xls', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_metropoles_excel1.xls', index=False, encoding='utf-8')
 
 def excel_correios(words):
 
@@ -207,7 +208,7 @@ def excel_correios(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_correio5.xls', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_correio_excel1.xls', index=False, encoding='utf-8')
     #print(type(soup.p.string))
     #print(soup.p.string)
     #aux = soup.p.string
