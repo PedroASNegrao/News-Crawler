@@ -24,7 +24,7 @@ def main():
     words = words + lowcase_lista
 
     inicio_correio = time.time()
-    #excel_correios(words)
+    excel_correios(words)
     fim_correio = time.time()
     tempo_correio = (fim_correio - inicio_correio)/60
 
@@ -68,7 +68,7 @@ def excel_metropoles(words):
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         try:
             result = requests.get(url, headers=headers, timeout=5)
-        except Timeout:
+        except requests.Timeout:
             print('The request timed out')
             continue
         data = result.content
@@ -88,10 +88,10 @@ def excel_metropoles(words):
             print("Metropoles--Checando paragrafo: %d" % cont_paragrafo)
             #print(text)
             #
-            debug1 = 0
+            #debug1 = 0
             for parameter in words:
-                print(debug1)
-                debug1 = 1 + debug1
+                #print(debug1)
+                #debug1 = 1 + debug1
                 if text.find(parameter) != -1:
                     init = text.find(parameter)
                     end = init + len(parameter)
@@ -160,7 +160,7 @@ def excel_correios(words):
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
         try:
             result = requests.get(url, headers=headers, timeout=5)
-        except Timeout:
+        except requests.Timeout:
             print('The request timed out')
             continue
         data = result.content
@@ -171,12 +171,12 @@ def excel_correios(words):
 
         required = False
         required2 = False
-        #cont_paragrafo = 0
+        cont_paragrafo = 0
 
 
         for paragrafs in soup.find_all('p'):
             text = str(paragrafs)
-            #cont_paragrafo = cont_paragrafo + 1
+            cont_paragrafo = cont_paragrafo + 1
             print("Correio--Checando paragrafo: %d" % cont_paragrafo)
             #print(text)
             #
