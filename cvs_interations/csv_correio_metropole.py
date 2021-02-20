@@ -72,7 +72,7 @@ def excel_metropoles(words):
             print('The request timed out')
             continue
         data = result.content
-        data_string = str(data.decode("iso8859-1"))
+        data_string = str(data.decode(encoding="utf-8", errors='replace'))
         soup = BeautifulSoup(data_string, "lxml")
 
         #print(soup)
@@ -82,7 +82,7 @@ def excel_metropoles(words):
         cont_paragrafo = 0
 
 
-        for paragrafs in soup.find_all('p'):
+        for paragrafs in soup.find_all("article", class_="m-content"):
             text = str(paragrafs)
             cont_paragrafo = cont_paragrafo + 1
             print("Metropoles--Checando paragrafo: %d" % cont_paragrafo)
@@ -164,7 +164,7 @@ def excel_correios(words):
             print('The request timed out')
             continue
         data = result.content
-        data_string = str(data.decode("iso8859-1"))
+        data_string = str(data.decode(encoding="utf-8", errors='replace'))
         soup = BeautifulSoup(data_string, "lxml")
 
         #print(soup)
@@ -174,7 +174,7 @@ def excel_correios(words):
         cont_paragrafo = 0
 
 
-        for paragrafs in soup.find_all('p'):
+        for paragrafs in soup.find_all("article", class_="article"):
             text = str(paragrafs)
             cont_paragrafo = cont_paragrafo + 1
             print("Correio--Checando paragrafo: %d" % cont_paragrafo)
@@ -218,7 +218,7 @@ def excel_correios(words):
 
     df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
     #print(df)
-    df.to_excel('./../Excel/news_correio_excel1.xlsx', index=False, encoding='iso8859-1')
+    df.to_excel('./../Excel/news_correio_excel1.xlsx', index=False, encoding="utf-8", errors='replace')
     #print(type(soup.p.string))
     #print(soup.p.string)
     #aux = soup.p.string
