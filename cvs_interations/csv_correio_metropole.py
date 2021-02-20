@@ -24,7 +24,7 @@ def main():
     words = words + lowcase_lista
 
     inicio_correio = time.time()
-    excel_correios(words)
+    #excel_correios(words)
     fim_correio = time.time()
     tempo_correio = (fim_correio - inicio_correio)/60
 
@@ -50,6 +50,7 @@ def excel_metropoles(words):
 
     all_links = []
     all_dates = []
+    all_titles = []
     words_finded = []
     i = 0
     objeto = []
@@ -120,6 +121,7 @@ def excel_metropoles(words):
             objeto = []
             all_links.append(url)
             all_dates.append(link[2])
+            all_titles.append(link[1])
             required = False
             required2 = False
 
@@ -128,7 +130,7 @@ def excel_metropoles(words):
     #print(words_finded)
     #print(all_dates)
 
-    df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
+    df = pd.DataFrame({'Data': all_dates, 'Titulo': all_titles, 'url': all_links, 'palavras-encontradas': words_finded})
     #print(df)
     df.to_excel('./../Excel/news_metropoles_excel2.xlsx', index=False, encoding='utf-8')
 
@@ -143,6 +145,7 @@ def excel_correios(words):
     all_links = []
     all_dates = []
     words_finded = []
+    all_titles = []
     i = 0
     objeto = []
     #print(data_array)
@@ -209,22 +212,14 @@ def excel_correios(words):
             objeto = []
             all_links.append(url)
             all_dates.append(link[2])
+            all_titles.append(link[1])
             required = False
             required2 = False
 
 
-    #print(all_links)
-    #print(words_finded)
-
-    df = pd.DataFrame({'url': all_links, 'palavras-encontradas': words_finded, 'data': all_dates})
+    df = pd.DataFrame({'Data': all_dates, 'Titulo': all_titles, 'url': all_links, 'palavras-encontradas': words_finded})
     #print(df)
     df.to_excel('./../Excel/news_correio_excel2.xlsx', index=False, encoding="utf-8")
-    #print(type(soup.p.string))
-    #print(soup.p.string)
-    #aux = soup.p.string
-    #print(aux.find("governo"))
-
-    #correio_data.to_excel('./../Excel/news_correio2.xls', index=False, encoding='utf-8')
 
 if __name__ == "__main__":
     main()
