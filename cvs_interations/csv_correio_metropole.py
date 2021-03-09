@@ -44,7 +44,7 @@ def excel_metropoles(words):
 
     print("entrou")
 
-    metropoles_data = pd.read_csv('./../Data/news_metropoles.csv')
+    metropoles_data = pd.read_csv('./../Data/news_metropoles_20_28.csv')
 
     data_array = metropoles_data.to_numpy()
 
@@ -132,7 +132,7 @@ def excel_metropoles(words):
 
     df = pd.DataFrame({'Data': all_dates, 'Titulo': all_titles, 'url': all_links, 'palavras-encontradas': words_finded})
     #print(df)
-    df.to_excel('./../Excel/news_metropoles_excel2.xlsx', index=False, encoding='utf-8')
+    df.to_excel('./../Excel/news_metropoles_excel_20_28.xlsx', index=False, encoding='utf-8')
 
 def excel_correios(words):
 

@@ -1,7 +1,7 @@
 
 words_lista = []
 lowcase_lista = []
-lista = open("Lista/list.txt", "r", encoding='utf-8')
+lista = open("../Lista/list.txt", "r", encoding='utf-8')
 for line in lista:
     aux = line.replace('\n', '')
     aux = aux

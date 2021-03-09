@@ -4,7 +4,7 @@ import re
 
 # Read csv
 
-metropoles_data = pd.read_csv('./Data/news_metropoles_old.csv')
+metropoles_data = pd.read_csv('../Data/news_metropoles_old.csv')
 
 data_array = metropoles_data.to_numpy()
 

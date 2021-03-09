@@ -6,7 +6,7 @@ import numpy as np
 import statistics
 
 # Set your path to the folder containing the .csv files
-PATH = './Data/' # Use your path
+PATH = '../Data/'  # Use your path
 
 # Fetch all files in path
 fileNames = os.listdir(PATH)

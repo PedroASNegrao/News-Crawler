@@ -13,7 +13,7 @@ i = (len(data))
 j = 0
 final_data = []
 
-with open('Data/news_metropoles.csv', 'w', newline='', encoding='utf-8') as file:
+with open('../Data/news_metropoles.csv', 'w', newline='', encoding='utf-8') as file:
     writer = csv.writer(file)
     for news in data:
         #x = news['excerpt'].find("Preso")
